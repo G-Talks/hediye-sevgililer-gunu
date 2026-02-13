@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sana Bir Mesaj Var ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffe6e6; /* Soft, romantik bir pembe arka plan */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+
+        .heart-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+        }
+
+        /* Kalbin başlangıç hali ve animasyonu */
+        .heart {
+            font-size: 50px;
+            animation: growAndBeat 3.5s forwards;
+        }
+
+        /* Büyüme, kızarma ve kalp atışı animasyonu */
+        @keyframes growAndBeat {
+            0% { transform: scale(0); color: #ffb3b3; text-shadow: 0 0 0px red; }
+            40% { transform: scale(4); color: #ff0000; text-shadow: 0 0 20px red; }
+            50% { transform: scale(3.5); color: #ff0000; text-shadow: 0 0 20px red; }
+            60% { transform: scale(4.2); color: #ff0000; text-shadow: 0 0 30px red; }
+            70% { transform: scale(3.8); color: #ff0000; text-shadow: 0 0 20px red; }
+            100% { transform: scale(4); color: #ff0000; text-shadow: 0 0 25px red; }
+        }
+
+        /* Mesajın stili ve yavaşça belirmesi */
+        .message {
+            margin-top: 100px;
+            font-size: 2.2rem;
+            color: #cc0000;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+            animation-delay: 2.5s; /* Kalp büyüdükten sonra metin gelir */
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            padding: 0 20px;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="heart-container">
+        <div class="heart">❤️</div>
+    </div>
+    
+    <div class="message">Sevgililer günümüz kutlu olsun sevgilim</div>
+
+</body>
+</html>
