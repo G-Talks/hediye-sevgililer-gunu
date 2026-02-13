@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sana Bir Mesaj Var ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* Koyu kadife kırmızısından siyaha asil bir geçiş */
+            background: radial-gradient(circle at center, #3a0a13 0%, #0a0203 100%); 
+            font-family: 'Playfair Display', serif;
+            overflow: hidden;
+        }
+
+        .heart-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+        }
+
+        .heart {
+            font-size: 50px;
+            animation: growAndBeat 3.5s forwards;
+            /* Daha yumuşak, premium bir parlama efekti */
+            filter: drop-shadow(0 0 15px rgba(255, 15, 65, 0.4)); 
+        }
+
+        /* Lüks kalp atışı animasyonu */
+        @keyframes growAndBeat {
+            0% { transform: scale(0); color: #ff4d6d; }
+            40% { transform: scale(3.5); color: #c9184a; filter: drop-shadow(0 0 30px rgba(201, 24, 74, 0.6));}
+            50% { transform: scale(3.2); color: #ff0f41; filter: drop-shadow(0 0 20px rgba(255, 15, 65, 0.5));}
+            60% { transform: scale(3.8); color: #ff0f41; filter: drop-shadow(0 0 40px rgba(255, 15, 65, 0.7));}
+            70% { transform: scale(3.4); color: #ff0f41; filter: drop-shadow(0 0 25px rgba(255, 15, 65, 0.5));}
+            100% { transform: scale(3.5); color: #ff0f41; filter: drop-shadow(0 0 35px rgba(255, 15, 65, 0.6));}
+        }
+
+        .message-container {
+            margin-top: 40px;
+            height: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 30px;
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .message {
+            font-size: 2.2rem;
+            /* Şampanya / Rose Gold rengi, çok asil durur */
+            color: #f7d2b6; 
+            font-style: italic;
+            text-shadow: 0px 5px 15px rgba(0,0,0,0.8);
+            opacity: 0; 
+            transform: translateY(20px) scale(0.95);
+            letter-spacing: 0px;
+            /* Geçişler yumuşak ve sinematik */
+            transition: opacity 1s ease-out, transform 1s ease-out; 
+            position: absolute;
+            width: 100%;
+        }
+
+        .message.show {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            letter-spacing: 1.5px; /* Ekrana gelince harfler çok hafif açılır */
+            transition: opacity 1s ease-out, transform 1s ease-out, letter-spacing 3s ease-out;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="heart-container">
+        <div class="heart">❤️</div>
+    </div>
+    
+    <div class="message-container">
+        <div id="dynamic-message" class="message"></div>
+    </div>
+
+    <script>
+        const messages = [
+            "Bu site ÜMMÜ SUDE TURAN yani canım aşkıma hazırlandı",
+            "Sevgililer günümüz kutlu olsun bitanem",
+            "Seni çok seviyorum yavruşum",
+            "En güzel günüm seni tanıdığım gün yavruşum",
+            "Nice bizli 14 şubatlara kadınımm"
+        ];
+
+        let currentIndex = 0;
+        const messageElement = document.getElementById("dynamic-message");
+
+        // Kalp animasyonu bitene kadar bekle
+        setTimeout(() => {
+            showNextMessage();
+        }, 3500);
+
+        function showNextMessage() {
+            if (currentIndex < messages.length) {
+                messageElement.innerText = messages[currentIndex];
+                
+                // Mesajı ekrana getir (sinematik efektlerle)
+                // Ufak bir gecikme ekliyoruz ki tarayıcı animasyonu yakalayabilsin
+                setTimeout(() => {
+                    messageElement.classList.add("show");
+                }, 50);
+
+                if (currentIndex < messages.length - 1) {
+                    // Yazı tam 2 saniye ekranda kalsın
+                    setTimeout(() => {
+                        messageElement.classList.remove("show");
+                        currentIndex++;
+                        
+                        // 1 saniye kaybolma efekti sürsün, sonra sıradaki gelsin
+                        setTimeout(showNextMessage, 1000); 
+                    }, 2000); 
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
